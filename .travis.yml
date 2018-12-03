@@ -18,4 +18,4 @@ before_script:
 
 script:
   - npm run e2e
-- ng build
+  - ng build
