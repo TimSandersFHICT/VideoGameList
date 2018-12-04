@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+// 3rd party
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // Components
 import { NavbarComponent } from './core/common/navbar.component';
@@ -19,14 +21,15 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     NavbarComponent,
     MainLayoutComponent,
-    HomePageComponent
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

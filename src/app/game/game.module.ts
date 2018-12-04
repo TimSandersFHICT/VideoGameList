@@ -20,6 +20,8 @@ import { OverviewPageComponent } from './components/overview-page/overview-page.
     FormsModule
   ],
   exports: [],
-  providers: [GameService],
+  providers: [
+    GameService
+  ],
 })
 export class GameModule { }
