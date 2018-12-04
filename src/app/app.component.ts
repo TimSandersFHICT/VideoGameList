@@ -8,3 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'my-VideoGameList-FrontEnd';
 }
+
+export function compute(number) {
+  if (number < 0 ) {
+    return 0;
+  }
+  return number + 1;
+}
