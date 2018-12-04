@@ -3,11 +3,20 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-overview-page',
+  styles: [`
+  .card-img-top {
+    position: relative;
+    float: center;
+    width:  250px;
+    height: 150px;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+  }`],
   template: `
   <div class ="row">
     <div class="card col-4" *ngFor="let game of games">
       <div class="mr-3">
-        <img class="card-img-top" src={{game.image_link}} alt="Card image cap">
+      <p style="text-align:center;"><img class="card-img-top" src="{{game.imageLink}}"></p>
         <div class="card-body">
           <h5 class="card-title">Title:</h5>
           <p class="card-text">{{game.title}}</p>
