@@ -16,6 +16,6 @@ describe('AppComponent', () => {
   it(`should have as title 'A Warm Welcome!'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('my-VideoGameList-FrontEnd');
+    expect(app.title).toEqual('A Warm Welcome!');
   }));
 });
