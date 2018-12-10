@@ -19,3 +19,9 @@ before_script:
 script:
   - npm run e2e
   - ng build
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "91d3443d-98a0-428d-b617-2a76d0d283d3"
+  app: videogamelist-fun
