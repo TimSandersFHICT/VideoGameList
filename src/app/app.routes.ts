@@ -18,6 +18,11 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'user',
+    component: MainLayoutComponent,
+    loadChildren: './user/user.module#UserModule'
+  },
+  {
     path: 'game',
     component: MainLayoutComponent,
     loadChildren: './game/game.module#GameModule'
