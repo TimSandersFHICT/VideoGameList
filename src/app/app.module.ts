@@ -11,6 +11,7 @@ import { MainLayoutComponent } from './core/layouts/main-layout.component';
 import { HomePageComponent } from './core/home/home-page.component';
 import { AppComponent } from './app.component';
 
+
 // Modules
 import { UserModule } from './user/user.module';
 
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
 import { LoginFormComponent} from './user/login/login-form.component';
 import { LoginModalComponent } from './user/login/login-modal.component';
 import { RecoveryFormComponent } from './user/recovery/recovery-form.component';
+
 
 // Firebase
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -37,7 +39,7 @@ import { AuthService } from './core/services/auth.service';
     HomePageComponent,
     LoginModalComponent,
     LoginFormComponent,
-    RecoveryFormComponent
+    RecoveryFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { AuthService } from './core/services/auth.service';
     NgbModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     AuthService

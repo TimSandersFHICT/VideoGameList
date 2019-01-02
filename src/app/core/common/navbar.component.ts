@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
   template: `
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"><i class="fas fa-horse mr-2"></i>  <b>Studentenhaver</b>
+    <a class="navbar-brand" [routerLink]="['/']"><i class="fas fa-horse mr-2"></i>  <b>Video Game List</b>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

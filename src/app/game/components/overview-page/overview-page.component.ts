@@ -18,15 +18,10 @@ import { Component, OnInit } from '@angular/core';
       <div class="mr-3">
       <p style="text-align:center;"><img class="card-img-top" src="{{game.imageLink}}"></p>
         <div class="card-body">
-          <h5 class="card-title">Title:</h5>
-          <p class="card-text">{{game.title}}</p>
+          <h5 class="card-title">{{game.title}}</h5>
           <h5 class="card-title">Summary:</h5>
           <p class="card-text">{{game.summary}}</p>
-          <h5 class="card-title">Price:</h5>
-          <p class="card-text">{{game.price}}</p>
-          <h5 class="card-title">Developer:</h5>
-          <p class="card-text">{{game.developer.name}}</p>
-          <a href="/game/overview/id" class="btn btn-primary">More details</a>
+          <a [routerLink]="['/game/', game.id]"  class="btn btn-primary">More details</a>
         </div>
       </div>
     </div>

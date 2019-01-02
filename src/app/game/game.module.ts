@@ -7,17 +7,22 @@ import {FormsModule} from '@angular/forms';
 // Routes
 import { gameRoutes } from './game.routes';
 import { RouterModule } from '@angular/router';
+
+// Components
 import { OverviewPageComponent } from './components/overview-page/overview-page.component';
+import { SingleGamePageComponent } from './components/singlegame/singlegame-page.component';
+
 
 @NgModule({
   declarations: [
-    OverviewPageComponent
+    OverviewPageComponent,
+    SingleGamePageComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(gameRoutes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [],
   providers: [
