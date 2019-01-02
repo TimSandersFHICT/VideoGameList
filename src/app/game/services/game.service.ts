@@ -24,7 +24,13 @@ getGame(id: string) {
 // send a POST request to the API to create a new data object
 createGame(game) {
     const body = JSON.stringify(game);
-    return this.http.post('', body, httpOptions);
+    return this.http.post('http://localhost:8105/api/game/new', body, httpOptions);
+}
+
+// send a POST request to the API to create a new data object
+createDeveloper(developer) {
+  const body = JSON.stringify(developer);
+  return this.http.post('http://localhost:8105/api/developer/new', body, httpOptions);
 }
 
 // send a PUT request to the API to update a data object

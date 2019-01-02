@@ -13,6 +13,9 @@ import { Component, OnInit } from '@angular/core';
     background-size:     cover;
   }`],
   template: `
+  <div>
+  <header><a [routerLink]="['/game/new/']"  class="btn btn-primary">Create new game</a></header>
+</div>
   <div class ="row">
     <div class="card col-4" *ngFor="let game of games">
       <div class="mr-3">
@@ -26,6 +29,7 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </div>
   </div>
+
   `
 })
 export class OverviewPageComponent implements OnInit {
