@@ -16,6 +16,11 @@ export class GameService {
     return this.http.get('http://localhost:8105/api/game/all');
 }
 
+// Uses http.get() to load data from a single API endpoint
+getGame(id: string) {
+  return this.http.get('http://localhost:8105/api/game/' + id);
+}
+
 // send a POST request to the API to create a new data object
 createGame(game) {
     const body = JSON.stringify(game);
