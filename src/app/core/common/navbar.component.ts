@@ -27,6 +27,9 @@ import { first } from 'rxjs/operators';
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/developer/overview']">Developers</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/game/new']">Add new game!</a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <div class="nav-item" *ngIf="afAuth?.user | async as user; else showLogin">

@@ -8,12 +8,76 @@ import {throwError as observableThrowError, Observable} from 'rxjs';
   template: `
   <form>
   <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <label for="FormControlInput1">Title</label>
+    <input
+      type="title"
+      [(ngModel)]="gametitle"
+      #title="ngModel"
+      class="form-control"
+      required
+      name="title"
+      [ngClass]="{'is-invalid': title.invalid && formSubmitted }"
+      placeholder="Title">
+      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+        <div *ngIf="title?.errors.required">
+          Title is required.
+        </div>
+      </div>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+  <label for="FormControlTextarea1">Summary</label>
+  <input
+      type="summary"
+      [(ngModel)]="gamesummary"
+      #summary="ngModel"
+      class="form-control"
+      required
+      name="summary"
+      [ngClass]="{'is-invalid': summary.invalid && formSubmitted }"
+      placeholder="Summary">
+      <div *ngIf="summary.invalid && (summary.dirty || summary.touched)" class="alert alert-danger">
+        <div *ngIf="summary?.errors.required">
+          Summary is required.
+        </div>
+      </div>
+</div>
+<div class="form-group">
+<label for="FormControlInput2">Price</label>
+<input
+      type="price"
+      [(ngModel)]="gameprice"
+      #price="ngModel"
+      class="form-control"
+      required
+      name="price"
+      [ngClass]="{'is-invalid': price.invalid && formSubmitted }"
+      placeholder="Price">
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+        <div *ngIf="price?.errors.required">
+          Price is required.
+        </div>
+      </div>
+</div>
+<div class="form-group">
+<label for="FormControlInput3">Date</label>
+<input
+      type="date"
+      [(ngModel)]="gamereleasedate"
+      #releasedate="ngModel"
+      class="form-control"
+      required
+      name="releasedate"
+      [ngClass]="{'is-invalid': releasedate.invalid && formSubmitted }"
+      placeholder="ReleaseDate">
+      <div *ngIf="releasedate.invalid && (releasedate.dirty || releasedate.touched)" class="alert alert-danger">
+        <div *ngIf="releasedate?.errors.required">
+          Release Date is required.
+        </div>
+      </div>
+</div>
+  <div class="form-group">
+    <label for="FormControlSelect1">Rating</label>
+    <select [(ngModel)]="gamerating"  #rating="ngModel" class="form-control" id="FormControlSelect1" name="rating" required>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -22,44 +86,64 @@ import {throwError as observableThrowError, Observable} from 'rxjs';
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
+<label for="FormControlInput4">Image link</label>
+<input
+      [(ngModel)]="gameimagelink"
+      #imagelink="ngModel"
+      class="form-control"
+      required
+      name="imagelink"
+      [ngClass]="{'is-invalid': imagelink.invalid && formSubmitted }"
+      placeholder="ImageLink">
+      <div *ngIf="imagelink.invalid && (imagelink.dirty || imagelink.touched)" class="alert alert-danger">
+        <div *ngIf="imagelink?.errors.required">
+          Image Link is required.
+        </div>
+      </div>
+</div>
+<div class="form-group">
+    <label for="FormControlSelect2">Genres</label>
+    <br>
+    <select [(ngModel)]="genre" name="genre">
+    <option *ngFor="let genre of genres" [ngValue]="genre.id">{{genre.name}}</option>
+  </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label for="FormControlSelect3">Developers</label>
+    <br>
+    <select [(ngModel)]="developer" name="developer">
+  <option *ngFor="let developer of developers" [ngValue]="developer.id">{{developer.name}}</option>
+</select>
   </div>
+<button name="CreateButton" type (click)="createGame(
+  gametitle,  gamesummary,  gameprice,  gamereleasedate,  gamerating, gameimagelink, developer, genre)" class="btn btn-primary">
+Create game!</button>
 </form>
-  `
+
+`
 })
 export class CreateGamePageComponent implements OnInit {
-  public games;
-  public genre_name;
-  public developer_name;
-  public developer_address;
-  public developer_numemployees;
-  public developer_datefounded;
+  public gametitle;
+  public gamesummary;
+  public gameprice;
+  public gamereleasedate;
+  public gamerating;
+  public gameimagelink;
+  public developers;
+  public developer;
+  public genres;
+  public genre;
   constructor(private _gameService: GameService) { }
 
   ngOnInit(): void {
-
+    this.getGenres();
+    this.getDevelopers();
   }
 
-  createGame(title, summary, price, releasedate, rating, imagelink) {
-
-    const developer = this.createDeveloper(this.developer_name, this.developer_address, this.developer_numemployees,
-      this.developer_datefounded);
-
-    const genre = this.createGenre(this.genre_name);
+  createGame(title, summary, price, releasedate, rating, imagelink, developer, genre) {
 
     const game = {title: title, summary: summary, price: price, releasedate: releasedate, rating: rating, imagelink: imagelink,
-       developer, genre};
+       developer: developer, genre: genre};
 
     console.log(game);
     this._gameService.createGame(game).subscribe(
@@ -68,20 +152,33 @@ export class CreateGamePageComponent implements OnInit {
          return true;
        },
        error => {
-         console.error('error while creating house');
+         console.error('error while creating game');
          return observableThrowError(error);
        }
     );
   }
 
-  createGenre(name) {
-    const genre = {name: name};
-    return genre;
+  getGenres() {
+    this._gameService.getGenres().subscribe(
+      // the first argument is a function which runs on success
+      data => {console.log(data);
+         this.genres = data; },
+      // the second argument is a function which runs on error
+      err => console.error(err),
+      // the third argument is a function which runs on completion
+      () => console.log('done loading games')
+    );
   }
 
-  createDeveloper(name, address, numemployees, datefounded) {
-    const genre = {name: name, address: address, numemployees: numemployees, datefounded: datefounded};
-    return genre;
+  getDevelopers() {
+    this._gameService.getDevelopers().subscribe(
+      // the first argument is a function which runs on success
+      data => {console.log(data);
+         this.developers = data; },
+      // the second argument is a function which runs on error
+      err => console.error(err),
+      // the third argument is a function which runs on completion
+      () => console.log('done loading games')
+    );
   }
-
 }
