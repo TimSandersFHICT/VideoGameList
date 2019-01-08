@@ -1,7 +1,10 @@
+import { LoginModalComponent } from './../../../user/login/login-modal.component';
 import { GameService } from './../../services/game.service';
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, from} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
     selector: 'app-overview-page',
@@ -23,6 +26,25 @@ import { ActivatedRoute } from '@angular/router';
       <a [routerLink]="['/game/overview/']"  class="btn btn-primary">Go back</a>
     </div>
   </div>
+  <div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <div class="nav-item" *ngIf="afAuth?.user | async as user">
+          <h6 class="card-title">Favorite the games you wish to purchase!</h6>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+            <p>No</p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              <p>Yes</p>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     `,
     styles: [`
       .purple-bg {
@@ -44,7 +66,9 @@ export class SingleGamePageComponent implements OnInit {
   game: any;
   id: string;
   constructor(private _gameService: GameService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private modalService: NgbModal,
+              public afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
