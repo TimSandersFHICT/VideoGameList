@@ -12,7 +12,7 @@ export class GameService {
   constructor(private http: HttpClient) { }
 
   // Uses http.get() to load data from a single API endpoint
-  getGames() {
+getGames() {
     return this.http.get('http://localhost:8105/api/game/all');
 }
 
@@ -23,7 +23,9 @@ getGame(id: string) {
 
 // send a POST request to the API to create a new data object
 createGame(game) {
-    const body = JSON.stringify(game);
+    console.log(JSON.stringify(game, ['developer', 'genre', 'imagelink', 'rating', 'releasedate', 'price', 'summary', 'title']));
+    const body = JSON.stringify(game, ['developer', 'genre', 'imagelink', 'rating', 'releasedate', 'price', 'summary', 'title']);
+
     return this.http.post('http://localhost:8105/api/game/new', body, httpOptions);
 }
 
@@ -35,7 +37,7 @@ createDeveloper(developer) {
 
 // send a PUT request to the API to update a data object
 updateGame(game) {
-    const body = JSON.stringify(game);
+    const body = JSON.parse(JSON.stringify(game));
     return this.http.put('' + game.id, body, httpOptions);
 }
 
@@ -43,4 +45,15 @@ updateGame(game) {
 deleteGame(game) {
     return this.http.delete('' + game.id);
 }
+
+// Uses http.get() to load data from a single API endpoint
+getGenres() {
+  return this.http.get('http://localhost:8105/api/genre/all');
+}
+
+// Uses http.get() to load data from a single API endpoint
+getDevelopers() {
+  return this.http.get('http://localhost:8105/api/developer/all');
+}
+
 }

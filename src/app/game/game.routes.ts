@@ -11,12 +11,11 @@ export const gameRoutes: Routes = [
     component: OverviewPageComponent
   },
   {
-    path: ':id',
-    component: SingleGamePageComponent
-  },
-  {
     path: 'new',
     component: CreateGamePageComponent
   },
-
+  {
+    path: ':id',
+    component: SingleGamePageComponent
+  }
 ];

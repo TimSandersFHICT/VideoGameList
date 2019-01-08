@@ -17,8 +17,8 @@ import { CreateGamePageComponent } from './components/creategame/creategame-page
 @NgModule({
   declarations: [
     OverviewPageComponent,
-    SingleGamePageComponent,
-    CreateGamePageComponent
+    CreateGamePageComponent,
+    SingleGamePageComponent
   ],
   imports: [
     CommonModule,
