@@ -26,9 +26,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
       <a [routerLink]="['/game/overview/']"  class="btn btn-primary">Go back</a>
     </div>
   </div>
+  <div class="nav-item" *ngIf="afAuth?.user | async as user">
   <div class="card" style="width: 25rem;">
   <div class="card-body">
-    <div class="nav-item" *ngIf="afAuth?.user | async as user">
           <h6 class="card-title">Favorite the games you wish to purchase!</h6>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
